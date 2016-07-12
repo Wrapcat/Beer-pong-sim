@@ -15,20 +15,16 @@ function displayCups() {
 		var node = document.createTextNode(cups[i])
 		btn.appendChild(node);
 		btn.onclick = aimedCup;
-		elem.appendChild(btn);		
+		elem.appendChild(btn);
 	}
 }
 setUpCups(6);
 function beerPong(cup) {
-	//var cup = document.getElementById("cup").value;
 	var toss = Math.random() * 10;
 	toss = Math.floor(toss);
 	var result = "";
-	if (toss <= 2) {
-		result = "made it in " + cup;
-		pullCup(cup);
-	} else if (toss <= 5) {
-		madeCup = cups[Math.floor(Math.random()*cups.length)];
+	if (toss <= 5) {
+		madeCup = whichCup();
 		result = "made it in " + madeCup;
 		pullCup(madeCup);
 	} else if (toss > 5 && toss <= 8) {
@@ -36,25 +32,26 @@ function beerPong(cup) {
 	} else {
 		var cup1 = whichCup();
 		var cup2 = whichCup();
-		while (cup1 == cup2) {
+		while (cup1 == cup2 && cups.length > 1) {
 			cup2 = whichCup();
 		}
-			result = "double bounced and made it in cup # " + cup1 + " and I pulled cup # " + cup2;
+		pullCup(cup1);
+		if (cups.length == 0) {
+			result = "double bounced into the last cup!"
+		} else {
+			pullCup(cup2);
+			result = "double bounced and made " + cup1 + " and I pulled " + cup2;
+		}
 	} 
 	var words = "I threw for " + cup + " and I " + result;
 	displayResults(words);
+	displayCups();
 }
-
 function displayResults(words) {
 	document.getElementById("results").innerHTML = words;
 }
 function whichCup() {
-	var cup1 = Math.random() * 10;
-	cup1 = Math.floor(cup1);
-	cup1 = cup1 + 1;
-	cup1 = cup1 / 2;
-	cup1 = Math.floor(cup1) + 1;
-	return cup1;
+	return cups[Math.floor(Math.random()*cups.length)];
 }
 function aimedCup() {
 	console.log(this.innerHTML);
@@ -64,5 +61,4 @@ function aimedCup() {
 function pullCup(cup) {
 	var idx = cups.indexOf(cup);
 	cups.splice(idx,1);
-	displayCups();
-}
+	}
