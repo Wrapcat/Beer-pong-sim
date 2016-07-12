@@ -10,7 +10,10 @@ function beerPong() {
 	} else {
 		var cup1 = whichCup();
 		var cup2 = whichCup();
-		result = "double bounced and made it in cup # " + cup1 + " and I pulled cup # " + cup2;
+		while (cup1 == cup2) {
+			cup2 = whichCup();
+		}
+			result = "double bounced and made it in cup # " + cup1 + " and I pulled cup # " + cup2;
 	} 
 	var words = "I threw for cup # " + cup + " and I " + result;
 	displayResults(words);
