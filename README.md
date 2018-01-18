@@ -1,1 +1,1 @@
-# Beer-pong-sim
+# Game-sim
