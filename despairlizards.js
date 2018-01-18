@@ -18,4 +18,4 @@ beerPong();
 
 function displayResults(words) {
 	document.getElementById("results").innerHTML = words;
-}
+} 
