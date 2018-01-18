@@ -1,4 +1,4 @@
-function beerPong() {
+function pong() {
 	var toss = Math.random() * 10;
 	toss = Math.floor(toss);
 	var result = "";
@@ -14,7 +14,7 @@ function beerPong() {
 	var words = "I threw for a cup and I " + result;
 	displayResults(words);
 }
-beerPong();
+pong();
 
 function displayResults(words) {
 	document.getElementById("results").innerHTML = words;
